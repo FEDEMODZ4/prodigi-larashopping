@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    {   
+        $c = $request->c;
+        $categories = Category::all();
+        $products = Product::where($categories->id = $c);
+
+        return view ('categories.index', compact('categories'));
     }
 
     /**
